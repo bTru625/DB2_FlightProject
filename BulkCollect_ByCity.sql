@@ -1,0 +1,4 @@
+/*
+a) By using SELECT .. BULK COLLECT .., type a plsql program that asks to enter a city id and display all planes based in this city (pla_id, desc, max_passenger and city name)
+b) Execute this code for the cities : 102, 101
+*/
