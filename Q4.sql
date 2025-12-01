@@ -4,7 +4,7 @@ b) Test the function NbOfPlanesPerCity (the city name could be entered in upper 
 */
 CLEAR SCREEN
 
-CREATE OR REPLACE FUNCTION NbOfPlanesPerCity (V_CityName CITY.CITY_NAME%type)
+CREATE OR REPLACE FUNCTION NbOfPlanesPerCity (V_CityName IN CITY.CITY_NAME%type)
 RETURN NUMBER
 IS
     V_NumberOfPlanes NUMBER;
