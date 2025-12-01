@@ -95,7 +95,43 @@ BEGIN
 
 END Update_Salary;
 
-
-
-
-
+-- CURSOR: LIST OF PILOTS (FOR A PARTICULAR PLANE)
+Procedure List_Of_Pilots (V_Pla_ID PLANE.PLA_DESC%TYPE)
+IS
+    CURSOR List_Of_Pilots (V_Pla_ID PLANE.PLA_DESC%TYPE)
+    IS
+        SELECT
+            pi.PILOT_ID,
+            pi.LAST_NAME,
+            pl.PLA_DESC,
+            c.CITY_NAME
+        FROM
+            FLIGHT f
+        JOIN PILOT pi
+        ON f.PILOT_ID = pi.PILOT_ID 
+        JOIN PLANE pl
+        ON f.PLANE_ID = pl.PLANE_ID
+        JOIN CITY c
+        ON f.CITY_ID = c.CITY_ID
+        WHERE pl.PLA_DESC = V_Pla_ID;
+BEGIN
+     DBMS_OUTPUT.PUT_LINE(RPAD('=', 70, '='));
+     DBMS_OUTPUT.PUT_LINE(
+       RPAD(Pilot.PILOT_ID, 15, ' ') ||
+       RPAD(Pilot.LAST_NAME, 25, ' ') ||
+       RPAD(Pilot.PLA_DESC, 15, ' ') ||
+       Pilot.CITY_NAME
+     );
+    FOR Pilot IN List_Of_Pilots LOOP
+     DBMS_OUTPUT.PUT_LINE(RPAD('-', 70, '-'));
+     DBMS_OUTPUT.PUT_LINE(
+       RPAD(Pilot.PILOT_ID, 15, ' ') ||
+       RPAD(Pilot.LAST_NAME, 25, ' ') ||
+       RPAD(Pilot.PLA_DESC, 15, ' ') ||
+       Pilot.CITY_NAME
+     );
+    END LOOP;
+    DBMS_OUTPUT.PUT_LINE(RPAD('=', 70, '='));
+END List_Of_Pilots;
+END;
+/
