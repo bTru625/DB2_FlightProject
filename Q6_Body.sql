@@ -7,12 +7,13 @@ b) Type a plsql program that test the objects of this package
 - Test Update_Salary, List_Of_Pilots and Nb_Planes
 */
 
+SET DEFINE OFF;
 
 CREATE or REPLACE PACKAGE BODY Pack_Pilot IS
 
 ---- PROCEDURE: UPDATE SALARY (TWO OVERLOADS)
 
--- 1) has pilot id & new salary
+-- 1) has pilot id and new salary
 Procedure Update_Salary (
     p_pilot_id in pilot.pilot_id%type,
     p_amount in pilot.salary%type
