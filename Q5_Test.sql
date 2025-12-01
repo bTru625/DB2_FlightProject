@@ -10,7 +10,6 @@ V_CityName city.city_name%TYPE;
 
 BEGIN
     V_CityName :='&S_CityName';
-    V_CityName := upper(V_CityName);
 
     ListOfFlights (V_CityName);
 

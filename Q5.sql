@@ -41,7 +41,7 @@ BEGIN
         JOIN PILOT              ON FLIGHT.Pilot_ID = pilot.Pilot_ID
         JOIN PLANE              ON FLIGHT.pla_id = PLANE.pla_id
             
-    WHERE DepartCity.CITY_NAME = p_dep_city_Name --related to the parameter as variable
+    WHERE upper(DepartCity.CITY_NAME) = upper(p_dep_city_Name) --related to the parameter as variable
     ORDER BY FLIGHT.DEP_TIME ;
 
 
