@@ -96,9 +96,9 @@ BEGIN
 END Update_Salary;
 
 -- CURSOR: LIST OF PILOTS (FOR A PARTICULAR PLANE)
-Procedure List_Of_Pilots (V_Pla_ID PLANE.PLA_ID%TYPE)
+Procedure List_Of_Pilots (P_Pla_ID PLANE.PLA_ID%TYPE)
 IS
-    CURSOR List_Of_Pilots (V_Pla_ID PLANE.PLA_ID%TYPE)
+    CURSOR Cur_List_Of_Pilots (P_Pla_ID PLANE.PLA_ID%TYPE)
     IS
         SELECT
             pi.PILOT_ID,
@@ -110,19 +110,19 @@ IS
         JOIN PILOT pi
         ON f.PILOT_ID = pi.PILOT_ID 
         JOIN PLANE pl
-        ON f.PLANE_ID = pl.PLANE_ID
+        ON f.PLA_ID = pl.PLA_ID
         JOIN CITY c
-        ON f.CITY_ID = c.CITY_ID
-        WHERE pl.PLA_ID = V_Pla_ID;
+        ON pi.CITY_ID = c.CITY_ID
+        WHERE pl.PLA_ID = P_Pla_ID;
 BEGIN
      DBMS_OUTPUT.PUT_LINE(RPAD('=', 70, '='));
      DBMS_OUTPUT.PUT_LINE(
-       RPAD(Pilot.PILOT_ID, 15, ' ') ||
-       RPAD(Pilot.LAST_NAME, 25, ' ') ||
-       RPAD(Pilot.PLA_DESC, 15, ' ') ||
-       Pilot.CITY_NAME
+       RPAD('Pilot ID', 15, ' ') ||
+       RPAD('Last Name', 25, ' ') ||
+       RPAD('Plane Desc', 15, ' ') ||
+         'City Name'
      );
-    FOR Pilot IN List_Of_Pilots LOOP
+    FOR Pilot IN Cur_List_Of_Pilots (P_Pla_ID) LOOP
      DBMS_OUTPUT.PUT_LINE(RPAD('-', 70, '-'));
      DBMS_OUTPUT.PUT_LINE(
        RPAD(Pilot.PILOT_ID, 15, ' ') ||
