@@ -95,9 +95,9 @@ BEGIN
 END Update_Salary;
 
 -- CURSOR: LIST OF PILOTS (FOR A PARTICULAR PLANE)
-Procedure List_Of_Pilots (V_Pla_ID PLANE.PLA_DESC%TYPE)
+Procedure List_Of_Pilots (V_Pla_ID PLANE.PLA_ID%TYPE)
 IS
-    CURSOR List_Of_Pilots (V_Pla_ID PLANE.PLA_DESC%TYPE)
+    CURSOR List_Of_Pilots (V_Pla_ID PLANE.PLA_ID%TYPE)
     IS
         SELECT
             pi.PILOT_ID,
@@ -112,7 +112,7 @@ IS
         ON f.PLANE_ID = pl.PLANE_ID
         JOIN CITY c
         ON f.CITY_ID = c.CITY_ID
-        WHERE pl.PLA_DESC = V_Pla_ID;
+        WHERE pl.PLA_ID = V_Pla_ID;
 BEGIN
      DBMS_OUTPUT.PUT_LINE(RPAD('=', 70, '='));
      DBMS_OUTPUT.PUT_LINE(
